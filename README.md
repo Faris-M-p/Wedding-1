@@ -74,26 +74,39 @@ The included images are AI-generated placeholders (golden-hour cathedral, rings,
 Bible, candles, flowers, cross, decor and an invitation flat-lay) — no bride or
 groom portraits, by design.
 
-## RSVP → Google Sheets
+## Google Sheets (one Web App, two sheets)
 
-The RSVP form posts directly to a **Google Apps Script Web App** (no backend,
-no database) which appends a row to a Google Sheet.
+Both forms post to a **single Google Apps Script Web App** — no backend, no
+database. Requests are routed by a `type` field into one spreadsheet with two
+sheets.
 
-1. Create a Google Sheet.
+- `Sheet1` → RSVP: `Timestamp · Name · Phone · Guest Count · Attendance · Device · Submitted At`
+- `Wishes` → Blessings: `Timestamp · Name · Phone · Wish · Is Custom · Status`
+
+### Setup
+
+1. Create **one** Google Sheet (its first tab is `Sheet1`).
 2. **Extensions ▸ Apps Script**, paste `google-apps-script/Code.gs`, and
    **Deploy ▸ New deployment ▸ Web app** (Execute as _Me_, access _Anyone_).
-3. Copy the Web app URL (`…/exec`) into `.env.local`:
+3. Put the single URL in `.env.local`:
 
    ```bash
    NEXT_PUBLIC_RSVP_ENDPOINT=https://script.google.com/macros/s/XXXX/exec
    ```
 
-The sheet auto-creates these columns on first submission:
-`Timestamp · Full Name · Phone Number · Guest Count · Attendance · Device · Submitted At`.
+### API
 
-The form validates name, phone, guest count and attendance before sending, shows
-`Sending…` while in flight, confirms on success, and surfaces a retry message on
-failure. If no endpoint is configured, responses fall back to browser storage.
+- **RSVP** — `POST { type: "rsvp", name, phone, guestCount, attendance, device }` → appends to `Sheet1`.
+- **Wish** — `POST { type: "wish", name, phone, wish, isCustom }` → appends to `Wishes` with `Status = "Pending"`.
+- **Guestbook** — `GET ?action=wishes` → returns a plain array `[{ name, wish }]` of **Approved** rows only.
+
+**Moderation:** every wish starts as `Pending`. The couple sets `Status` in the
+`Wishes` sheet to `Approved` (shown on the site) or `Rejected` (hidden). No admin
+UI is needed.
+
+Both forms validate before sending, show `Sending…` while in flight, confirm on
+success, and show a retry message on failure. If the endpoint is empty, forms
+fall back to browser storage.
 
 ## Project structure
 
@@ -112,9 +125,10 @@ components/
 lib/
   config.ts       # single source of truth for all content
   sound.ts        # Web Audio bells + ambient hymn (no assets)
-  rsvp.ts         # RSVP validation + Google Sheets submission
+  rsvp.ts         # RSVP validation + submission (RSVP API)
+  blessings.ts    # wish submission + approved-wish fetch (Wishes API)
 google-apps-script/
-  Code.gs         # deploy this as the Apps Script Web App endpoint
+  Code.gs         # one Web App: RSVP (Sheet1) + Wishes (Wishes sheet)
 public/images/    # church & gallery imagery
 ```
 

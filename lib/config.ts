@@ -133,6 +133,35 @@ export const wedding = {
     { src: "/images/gallery-invite.png", alt: "The wedding invitation and wax seal", span: "short" },
   ] as GalleryItem[],
 
+  blessings: {
+    // Curated wishes shown first so the page never looks empty.
+    family: [
+      {
+        name: "Fr. Sebastian",
+        message:
+          "May the Lord bless you and keep you; may His face shine upon your covenant all the days of your life.",
+      },
+      {
+        name: "Grandma Rose",
+        message:
+          "Two souls, one faith, one home. My heart overflows with joy for you both.",
+      },
+      {
+        name: "The Cherian Family",
+        message:
+          "Wishing you a marriage rooted in prayer and crowned with grace. Congratulations!",
+      },
+    ],
+    // One-tap blessings guests can choose (auto-approved on submit).
+    predefined: [
+      "May God bless your marriage with endless love and happiness.",
+      "Wishing you a lifetime filled with joy and peace.",
+      "Congratulations! May Christ always be the center of your family.",
+      "May your journey together be blessed with faith and love.",
+      "Keeping both of you in our prayers. God bless your new beginning.",
+    ],
+  },
+
   contact: {
     rsvpPhone: "+91 00000 00000",
     rsvpBy: "August 10, 2026",
@@ -140,12 +169,25 @@ export const wedding = {
 
   rsvp: {
     /**
-     * Google Apps Script Web App URL (…/exec).
-     * Set NEXT_PUBLIC_RSVP_ENDPOINT in .env.local (see .env.example)
-     * or paste the URL directly below. When empty, submissions are
-     * stored locally in the browser as a graceful fallback.
+     * The single Google Apps Script Web App URL (…/exec) used for BOTH
+     * RSVP and Wishes (routed by a `type` field). Requests write to one
+     * spreadsheet with two sheets (Sheet1 + Wishes).
+     * Set NEXT_PUBLIC_RSVP_ENDPOINT in .env.local. When empty,
+     * submissions fall back to browser storage.
      */
     endpoint: process.env.NEXT_PUBLIC_RSVP_ENDPOINT ?? "",
+  },
+
+  wishes: {
+    /**
+     * Wishes share the same deployment URL as RSVP. An optional
+     * NEXT_PUBLIC_WISHES_ENDPOINT override is supported for flexibility,
+     * but by default this resolves to the single RSVP endpoint above.
+     */
+    endpoint:
+      process.env.NEXT_PUBLIC_WISHES_ENDPOINT ||
+      process.env.NEXT_PUBLIC_RSVP_ENDPOINT ||
+      "",
   },
 
   site: {

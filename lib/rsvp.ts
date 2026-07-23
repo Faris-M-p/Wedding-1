@@ -73,6 +73,7 @@ function detectDevice(): "Mobile" | "Tablet" | "Desktop" {
  */
 export async function submitRsvp(payload: RsvpPayload): Promise<void> {
   const body = {
+    type: "rsvp" as const,
     ...payload,
     device: detectDevice(),
     submittedAt: new Date().toISOString(),
