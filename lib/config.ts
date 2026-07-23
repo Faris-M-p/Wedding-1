@@ -138,6 +138,16 @@ export const wedding = {
     rsvpBy: "August 10, 2026",
   },
 
+  rsvp: {
+    /**
+     * Google Apps Script Web App URL (…/exec).
+     * Set NEXT_PUBLIC_RSVP_ENDPOINT in .env.local (see .env.example)
+     * or paste the URL directly below. When empty, submissions are
+     * stored locally in the browser as a graceful fallback.
+     */
+    endpoint: process.env.NEXT_PUBLIC_RSVP_ENDPOINT ?? "",
+  },
+
   site: {
     url: "https://melvina-and-royal.example.com",
     title: "Melvina & Royal — Together Before God",

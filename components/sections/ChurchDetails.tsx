@@ -48,9 +48,9 @@ export function ChurchDetails() {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm uppercase tracking-[0.2em] text-white transition-transform duration-300 hover:-translate-y-0.5"
             >
               <MapPin className="h-4 w-4" strokeWidth={1.5} />
-              Google Maps
+              Navigate
             </a>
-            <a
+            {/* <a
               href={church.navigateUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -58,7 +58,7 @@ export function ChurchDetails() {
             >
               <Navigation className="h-4 w-4" strokeWidth={1.5} />
               Navigate
-            </a>
+            </a> */}
           </div>
         </Reveal>
 

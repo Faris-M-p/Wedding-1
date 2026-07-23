@@ -74,6 +74,27 @@ The included images are AI-generated placeholders (golden-hour cathedral, rings,
 Bible, candles, flowers, cross, decor and an invitation flat-lay) — no bride or
 groom portraits, by design.
 
+## RSVP → Google Sheets
+
+The RSVP form posts directly to a **Google Apps Script Web App** (no backend,
+no database) which appends a row to a Google Sheet.
+
+1. Create a Google Sheet.
+2. **Extensions ▸ Apps Script**, paste `google-apps-script/Code.gs`, and
+   **Deploy ▸ New deployment ▸ Web app** (Execute as _Me_, access _Anyone_).
+3. Copy the Web app URL (`…/exec`) into `.env.local`:
+
+   ```bash
+   NEXT_PUBLIC_RSVP_ENDPOINT=https://script.google.com/macros/s/XXXX/exec
+   ```
+
+The sheet auto-creates these columns on first submission:
+`Timestamp · Full Name · Phone Number · Guest Count · Attendance · Device · Submitted At`.
+
+The form validates name, phone, guest count and attendance before sending, shows
+`Sending…` while in flight, confirms on success, and surfaces a retry message on
+failure. If no endpoint is configured, responses fall back to browser storage.
+
 ## Project structure
 
 ```
@@ -91,6 +112,9 @@ components/
 lib/
   config.ts       # single source of truth for all content
   sound.ts        # Web Audio bells + ambient hymn (no assets)
+  rsvp.ts         # RSVP validation + Google Sheets submission
+google-apps-script/
+  Code.gs         # deploy this as the Apps Script Web App endpoint
 public/images/    # church & gallery imagery
 ```
 
