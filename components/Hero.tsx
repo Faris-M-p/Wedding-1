@@ -82,7 +82,16 @@ export function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(29,45,34,0.35) 0%, rgba(29,45,34,0.12) 35%, rgba(29,45,34,0.30) 70%, rgba(29,45,34,0.62) 100%)",
+            "linear-gradient(to bottom, rgba(29,45,34,0.42) 0%, rgba(29,45,34,0.14) 32%, rgba(29,45,34,0.32) 68%, rgba(29,45,34,0.70) 100%)",
+        }}
+      />
+      {/* Soft central scrim so the names read over the bright facade */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 55% at 50% 52%, rgba(20,35,26,0.48) 0%, transparent 60%)",
         }}
       />
 
@@ -174,9 +183,9 @@ function Clouds({ reduce }: { reduce: boolean }) {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       {[
-        { top: "14%", size: 340, dur: 90, delay: 0, o: 0.25 },
-        { top: "30%", size: 260, dur: 120, delay: -30, o: 0.18 },
-        { top: "8%", size: 200, dur: 150, delay: -70, o: 0.15 },
+        { top: "14%", size: 340, dur: 90, delay: 0, o: 0.12 },
+        { top: "30%", size: 260, dur: 120, delay: -30, o: 0.09 },
+        { top: "8%", size: 200, dur: 150, delay: -70, o: 0.08 },
       ].map((c, i) => (
         <motion.div
           key={i}

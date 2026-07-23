@@ -22,18 +22,19 @@ export type GalleryItem = {
 
 export const wedding = {
   couple: {
-    bride: "Anna",
-    groom: "Thomas",
-    brideFull: "Anna Elizabeth",
-    groomFull: "Thomas Mathew",
-    together: "Anna & Thomas",
+    bride: "Melvina",
+    groom: "Royal",
+    brideFull: "Melvina Varghese",
+    groomFull: "Royal Wilson",
+    together: "Melvina & Royal",
   },
 
   date: {
-    iso: "2026-12-19T10:00:00+05:30",
-    display: "December 19, 2026",
-    dayName: "Saturday",
-    short: "19 . 12 . 2026",
+    // Holy Matrimony — the main celebration
+    iso: "2026-08-23T12:05:00+05:30",
+    display: "August 23, 2026",
+    dayName: "Sunday",
+    short: "23 . 08 . 2026",
   },
 
   verse: {
@@ -43,45 +44,48 @@ export const wedding = {
 
   invitation: {
     lead: "We request the honour of your presence",
-    body: "as we exchange our vows and are united in the covenant of holy matrimony before God and in the company of our beloved family and friends.",
+    body: "as Melvina & Royal are united in the covenant of holy matrimony before God, and in the loving company of family, relatives and friends.",
   },
 
   church: {
-    name: "St. Mary's Cathedral",
-    shortName: "St. Mary's Cathedral",
-    tagline: "A century of prayer beneath these arches",
-    address: "Cathedral Road, Kochi, Kerala 682011",
+    name: "St. Thomas Church",
+    shortName: "St. Thomas Church",
+    tagline: "Where two become one before God",
+    address: "St. Thomas Church, Thiroor, Thrissur, Kerala",
     architecture: [
-      { label: "Style", value: "Neo-Gothic Revival" },
-      { label: "Consecrated", value: "Anno Domini 1902" },
-      { label: "Spire", value: "48 metres to the cross" },
+      { label: "Silhouette", value: "Twin-Spired Basilica" },
+      { label: "Crowned by", value: "Golden Domes" },
+      { label: "Setting", value: "Palm-lined Courtyard" },
     ],
     description:
-      "Built at the turn of the last century, the cathedral's soaring vaults and stained-glass windows have witnessed generations of covenants. It is here, beneath the great cross, that our own begins.",
-    mapsQuery: "St+Mary's+Cathedral+Kochi",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=St+Mary's+Cathedral+Kochi",
-    navigateUrl: "https://www.google.com/maps/dir/?api=1&destination=St+Mary's+Cathedral+Kochi",
+      "Beneath twin golden domes and the great cross, this is the house of prayer where our covenant begins. Its arches, statues and sunlit courtyard have gathered the faithful for generations — and now they gather to bless ours.",
+    mapsQuery: "St+Thomas+Church+Thiroor+Thrissur",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=St+Thomas+Church+Thiroor+Thrissur",
+    navigateUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=St+Thomas+Church+Thiroor+Thrissur",
   },
 
   reception: {
-    name: "The Grand Pavilion",
-    tagline: "An evening of gratitude & celebration",
-    address: "Marine Drive, Kochi, Kerala 682031",
-    time: "7:00 PM onwards",
-    date: "December 19, 2026",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Marine+Drive+Kochi",
+    name: "St. Sebastian's Parish Hall",
+    tagline: "Following the betrothal ceremony",
+    address: "St. Sebastian's Parish Hall, Kuttikad, Chalakudy",
+    time: "Following the betrothal",
+    date: "August 17, 2026",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=St+Sebastian's+Forane+Church+Kuttikad",
   },
 
   parents: {
     bride: {
       side: "Parents of the Bride",
-      names: "Mr. George & Mrs. Mary Elizabeth",
-      line: "who present their daughter with love and blessing",
+      names: "Mr. V. K. Varghese & Mrs. Mary Varghese",
+      line: "Vaithalakkaran (H), Kuttikad (PO), Chalakudy",
     },
     groom: {
       side: "Parents of the Groom",
-      names: "Mr. Joseph & Mrs. Rachel Mathew",
-      line: "who present their son with love and blessing",
+      names: "Mr. Wilson P. C. & Mrs. Rani Wilson",
+      line: "Palayoor (H), Chottupara (PO), Killannur, Thrissur",
     },
   },
 
@@ -89,37 +93,37 @@ export const wedding = {
     {
       key: "betrothal",
       title: "Betrothal",
-      date: "December 18, 2026",
-      time: "5:00 PM",
-      location: "St. Mary's Cathedral, Kochi",
+      date: "Monday, 17 August 2026",
+      time: "10:30 AM",
+      location: "St. Sebastian's Forane Church, Kuttikad",
       description:
-        "The reading of the banns and the blessing of the rings, as two families become one in promise.",
+        "The blessing of the rings and the joining of two families in promise, before God.",
       icon: "ring",
+    },
+    {
+      key: "reception",
+      title: "Betrothal Reception",
+      date: "Monday, 17 August 2026",
+      time: "Following the ceremony",
+      location: "St. Sebastian's Parish Hall, Kuttikad",
+      description:
+        "A warm gathering of family, relatives and friends to celebrate the betrothal.",
+      icon: "reception",
     },
     {
       key: "wedding",
       title: "Holy Matrimony",
-      date: "December 19, 2026",
-      time: "10:00 AM",
-      location: "St. Mary's Cathedral, Kochi",
+      date: "Sunday, 23 August 2026",
+      time: "12:05 PM",
+      location: "St. Thomas Church, Thiroor",
       description:
-        "The nuptial mass and exchange of vows before God, sealing the covenant of marriage.",
+        "The nuptial mass and exchange of vows, sealing the sacred covenant of marriage.",
       icon: "church",
-    },
-    {
-      key: "reception",
-      title: "Reception",
-      date: "December 19, 2026",
-      time: "7:00 PM",
-      location: "The Grand Pavilion, Marine Drive",
-      description:
-        "An evening of feasting, music and gratitude in the warm company of all we hold dear.",
-      icon: "reception",
     },
   ] as TimelineEvent[],
 
   gallery: [
-    { src: "/images/gallery-church-arch.png", alt: "Cathedral arches at golden hour", span: "tall" },
+    { src: "/images/gallery-church-arch.png", alt: "St. Thomas Church at golden hour", span: "tall" },
     { src: "/images/gallery-rings.png", alt: "Two wedding rings resting on linen", span: "short" },
     { src: "/images/gallery-bible.png", alt: "An open Bible with a ribbon marker", span: "short" },
     { src: "/images/gallery-candles.png", alt: "Candles glowing in the sanctuary", span: "tall" },
@@ -130,15 +134,15 @@ export const wedding = {
   ] as GalleryItem[],
 
   contact: {
-    rsvpPhone: "+91 98470 00000",
-    rsvpBy: "December 1, 2026",
+    rsvpPhone: "+91 00000 00000",
+    rsvpBy: "August 10, 2026",
   },
 
   site: {
-    url: "https://anna-and-thomas.example.com",
-    title: "Anna & Thomas — Together Before God",
+    url: "https://melvina-and-royal.example.com",
+    title: "Melvina & Royal — Together Before God",
     description:
-      "A Christian wedding celebration at St. Mary's Cathedral, Kochi. Join Anna & Thomas as they enter the covenant of marriage before God on December 19, 2026.",
+      "A Christian wedding celebration at St. Thomas Church, Thiroor. Join Melvina & Royal as they enter the covenant of marriage before God on August 23, 2026.",
     ogImage: "/images/hero-church.png",
   },
 } as const;
