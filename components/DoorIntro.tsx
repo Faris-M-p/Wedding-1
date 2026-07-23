@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Cross } from "lucide-react";
 import { wedding } from "@/lib/config";
 import { playBells } from "@/lib/sound";
+import { playSong } from "@/lib/music";
 
 type Phase = "closed" | "opening";
 
@@ -29,6 +30,9 @@ export function DoorIntro() {
     if (phase !== "closed") return;
     setPhase("opening");
     playBells();
+    // Start the wedding song within the click gesture so the browser
+    // allows playback; it plays under the opening doors and continues on.
+    playSong();
   }, [phase]);
 
   // Allow Escape / Enter to open for keyboard users.

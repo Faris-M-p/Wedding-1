@@ -1,32 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
-import { AmbientHymn } from "@/lib/sound";
+import { isSongPlaying, subscribeSong, toggleSong } from "@/lib/music";
 
 export function MusicPlayer() {
   const [playing, setPlaying] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const hymnRef = useRef<AmbientHymn | null>(null);
 
   useEffect(() => {
     setMounted(true);
-    hymnRef.current = new AmbientHymn();
-    return () => hymnRef.current?.stop();
+    setPlaying(isSongPlaying());
+    return subscribeSong(setPlaying);
   }, []);
 
-  const toggle = () => {
-    const hymn = hymnRef.current;
-    if (!hymn) return;
-    if (playing) {
-      hymn.stop();
-      setPlaying(false);
-    } else {
-      hymn.start();
-      setPlaying(true);
-    }
-  };
+  const toggle = () => toggleSong();
 
   if (!mounted) return null;
 
@@ -39,7 +28,7 @@ export function MusicPlayer() {
       transition={{ delay: 2, duration: 0.6 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.92 }}
-      aria-label={playing ? "Pause music" : "Play church piano music"}
+      aria-label={playing ? "Pause music" : "Play wedding music"}
       aria-pressed={playing}
       className="group fixed bottom-5 right-5 z-[70] flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-primary/80 text-gold-soft backdrop-blur-sm transition-colors hover:bg-primary"
       style={{ boxShadow: "0 6px 20px -8px rgba(20,35,26,0.5)" }}
