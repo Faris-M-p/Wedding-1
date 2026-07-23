@@ -82,7 +82,7 @@ export function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(29,45,34,0.42) 0%, rgba(29,45,34,0.14) 32%, rgba(29,45,34,0.32) 68%, rgba(29,45,34,0.70) 100%)",
+            "linear-gradient(to bottom, rgba(29,45,34,0.30) 0%, rgba(29,45,34,0.22) 24%, rgba(29,45,34,0.40) 50%, rgba(29,45,34,0.30) 78%, rgba(29,45,34,0.48) 100%)",
         }}
       />
       {/* Soft central scrim so the names read over the bright facade */}
@@ -91,13 +91,13 @@ export function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 50% 52%, rgba(20,35,26,0.48) 0%, transparent 60%)",
+            "radial-gradient(ellipse 72% 58% at 50% 48%, rgba(20,35,26,0.52) 0%, transparent 62%)",
         }}
       />
 
       {/* Light rays behind the cross */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-[18%] h-[70vh] w-[70vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(246,230,184,0.35)_0%,transparent_60%)] blur-2xl" />
+        <div className="absolute left-1/2 top-[12%] h-[60vh] w-[60vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(246,230,184,0.22)_0%,transparent_62%)] blur-2xl" />
       </div>
 
       <Clouds reduce={!!reduce} />
@@ -110,16 +110,22 @@ export function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-white/5 backdrop-blur-[2px]"
+          className="flex h-16 w-16 items-center justify-center rounded-full border border-white/50 bg-black/15 backdrop-blur-[2px]"
+          style={{ boxShadow: "0 4px 24px rgba(20,35,26,0.35)" }}
         >
-          <Cross className="h-5 w-5 text-gold-soft" strokeWidth={1.25} />
+          <Cross
+            className="h-8 w-8 text-white"
+            strokeWidth={1.4}
+            style={{ filter: "drop-shadow(0 1px 6px rgba(20,35,26,0.5))" }}
+          />
         </motion.span>
 
         <motion.span
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 text-xs uppercase tracking-[0.5em] text-gold-soft"
+          className="mt-6 text-xs font-medium uppercase tracking-[0.5em] text-white"
+          style={{ textShadow: "0 2px 14px rgba(20,35,26,0.55)" }}
         >
           Together Before God
         </motion.span>
@@ -129,7 +135,11 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           className="script mt-4 text-white"
-          style={{ fontSize: "clamp(3.4rem, 12vw, 8rem)" }}
+          style={{
+            fontSize: "clamp(3.4rem, 12vw, 8rem)",
+            textShadow:
+              "0 2px 24px rgba(20,35,26,0.45), 0 1px 4px rgba(20,35,26,0.4)",
+          }}
         >
           {wedding.couple.together}
         </motion.h1>
@@ -138,14 +148,20 @@ export function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-2 flex flex-col items-center gap-3"
+          className="mt-4 flex flex-col items-center gap-4"
         >
-          <span className="flex items-center gap-4 text-sm tracking-[0.28em] text-white/90 uppercase">
-            <span className="h-px w-8 bg-gold/70" />
+          <span
+            className="flex items-center gap-4 text-base uppercase tracking-[0.36em] text-white sm:text-lg"
+            style={{ textShadow: "0 2px 14px rgba(20,35,26,0.5)" }}
+          >
+            <span className="h-px w-8 bg-gold/80" />
             {wedding.date.short}
-            <span className="h-px w-8 bg-gold/70" />
+            <span className="h-px w-8 bg-gold/80" />
           </span>
-          <span className="font-heading text-lg italic text-white/85">
+          <span
+            className="font-heading text-xl italic text-white sm:text-2xl"
+            style={{ textShadow: "0 2px 14px rgba(20,35,26,0.5)" }}
+          >
             {wedding.church.name}
           </span>
         </motion.div>
@@ -154,17 +170,17 @@ export function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
+          className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
         >
           <a
             href="#invitation"
-            className="rounded-full bg-gold px-8 py-3.5 text-sm uppercase tracking-[0.22em] text-primary shadow-lift transition-transform duration-300 hover:-translate-y-0.5"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-gold px-8 text-sm uppercase tracking-[0.22em] text-primary shadow-lift transition-transform duration-300 hover:-translate-y-0.5"
           >
             View Invitation
           </a>
           <a
             href="#rsvp"
-            className="rounded-full border border-white/50 px-8 py-3.5 text-sm uppercase tracking-[0.22em] text-white backdrop-blur-sm transition-colors duration-300 hover:border-gold hover:text-gold-soft"
+            className="inline-flex h-12 items-center justify-center rounded-full border border-white/80 bg-white/5 px-8 text-sm uppercase tracking-[0.22em] text-white backdrop-blur-sm transition-colors duration-300 hover:border-gold hover:bg-gold/10 hover:text-gold-soft"
           >
             RSVP
           </a>

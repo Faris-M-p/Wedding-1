@@ -6,9 +6,9 @@ export function ScrollIndicator() {
   const reduce = useReducedMotion();
   return (
     <motion.div
-      className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 text-white/70"
+      className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 text-white/55"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 0.75 }}
       transition={{ delay: 1.4, duration: 1 }}
       aria-hidden
     >

@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { wedding } from "@/lib/config";
 
@@ -50,31 +50,56 @@ export function Countdown() {
   );
 
   return (
-    <Section id="countdown" tone="primary" size="lg" className="grain">
-      <div className="flex flex-col items-center text-center text-white">
-        <span className="kicker text-gold-soft">Counting the days</span>
-        <h2 className="mt-4 text-3xl text-white sm:text-4xl md:text-5xl">
-          Until we say &ldquo;I do&rdquo;
-        </h2>
-        <span className="mt-4 flex items-center gap-3" aria-hidden>
-          <span className="h-px w-8 bg-gold/60" />
-          <span className="gold-dot" />
-          <span className="h-px w-8 bg-gold/60" />
-        </span>
+    <section id="countdown" className="relative overflow-hidden bg-background">
+      {/* Floating countdown */}
+      <div className="relative z-10 mx-auto max-w-5xl px-6 pt-24 text-center sm:pt-32">
+        <Reveal className="flex flex-col items-center">
+          <span className="kicker">Counting the Days</span>
+          <h2 className="mt-4 text-3xl text-primary sm:text-4xl md:text-5xl">
+            Until We Say &ldquo;I Do&rdquo;
+          </h2>
+          <span className="mt-6 flex items-center gap-3" aria-hidden>
+            <span className="h-px w-12 bg-gradient-to-r from-transparent to-gold/70" />
+            <span className="text-lg leading-none text-gold">&#10022;</span>
+            <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold/70" />
+          </span>
+        </Reveal>
 
         {time?.done ? (
-          <p className="mt-14 font-heading text-2xl italic text-gold-soft">
+          <p className="mt-16 font-heading text-2xl italic text-gold">
             Today we celebrate before God.
           </p>
         ) : (
-          <Reveal className="mt-14 grid w-full max-w-3xl grid-cols-2 gap-8 sm:grid-cols-4">
+          <Reveal className="mt-16 flex flex-wrap items-start justify-center gap-x-10 gap-y-12 sm:gap-x-16 lg:gap-x-20">
             {units.map((u) => (
               <Ring key={u.label} {...u} ready={!!time} />
             ))}
           </Reveal>
         )}
       </div>
-    </Section>
+
+      {/* Large, soft church watercolor the countdown floats above.
+          Masked top & bottom so it melts into the page — no visible frame. */}
+      <div
+        aria-hidden
+        className="pointer-events-none relative z-0 -mt-10 sm:-mt-16"
+      >
+        <Image
+          src="/images/church-illustration.png"
+          alt=""
+          width={1400}
+          height={787}
+          sizes="100vw"
+          className="mx-auto h-auto w-full max-w-6xl select-none opacity-[0.16]"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, #000 24%, #000 86%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, #000 24%, #000 86%, transparent 100%)",
+          }}
+        />
+      </div>
+    </section>
   );
 }
 
@@ -89,28 +114,31 @@ function Ring({
   max: number;
   ready: boolean;
 }) {
-  const size = 132;
-  const stroke = 3;
+  const size = 138;
+  const stroke = 2.5;
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   const pct = Math.min(value / max, 1);
   const offset = c * (1 - pct);
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-4">
       <div className="relative" style={{ width: size, height: size }}>
         <svg
           width={size}
           height={size}
           viewBox={`0 0 ${size} ${size}`}
           className="-rotate-90"
+          style={{ filter: "drop-shadow(0 10px 24px rgba(46,77,58,0.10))" }}
         >
+          {/* soft white disc so numbers stay legible over the artwork */}
+          <circle cx={size / 2} cy={size / 2} r={r} fill="rgba(255,255,255,0.72)" />
           <circle
             cx={size / 2}
             cy={size / 2}
             r={r}
             fill="none"
-            stroke="rgba(255,255,255,0.12)"
+            stroke="rgba(201,162,39,0.18)"
             strokeWidth={stroke}
           />
           <circle
@@ -127,14 +155,12 @@ function Ring({
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-heading text-4xl tabular-nums text-white">
+          <span className="font-heading text-4xl tabular-nums text-primary sm:text-5xl">
             {ready ? String(value).padStart(2, "0") : "--"}
           </span>
         </div>
       </div>
-      <span className="text-xs uppercase tracking-[0.3em] text-gold-soft/90">
-        {label}
-      </span>
+      <span className="text-xs uppercase tracking-[0.3em] text-gold">{label}</span>
     </div>
   );
 }

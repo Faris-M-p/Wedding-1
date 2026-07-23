@@ -4,6 +4,7 @@ import { MusicPlayer } from "@/components/MusicPlayer";
 import { BibleVerse } from "@/components/sections/BibleVerse";
 import { Invitation } from "@/components/sections/Invitation";
 import { Countdown } from "@/components/sections/Countdown";
+import { GoldDivider } from "@/components/ui/GoldDivider";
 import { Timeline } from "@/components/sections/Timeline";
 import { ChurchDetails } from "@/components/sections/ChurchDetails";
 import { Reception } from "@/components/sections/Reception";
@@ -23,6 +24,7 @@ export default function Home() {
         <BibleVerse />
         <Invitation />
         <Countdown />
+        <GoldDivider from="background" to="background" />
         <Timeline />
         <ChurchDetails />
         <Reception />
