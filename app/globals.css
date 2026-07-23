@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens (Tailwind v4 CSS-first theme)                        */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-background: #faf8f4;
+  --color-primary: #2e4d3a;
+  --color-primary-soft: #3c6149;
+  --color-gold: #c9a227;
+  --color-gold-soft: #e2c979;
+  --color-white: #ffffff;
+  --color-ink: #2a2a2a;
+  --color-muted: #666666;
+  --color-line: #e7e1d6;
+
+  --font-heading: var(--font-cormorant), "Times New Roman", serif;
+  --font-script: var(--font-great-vibes), "Segoe Script", cursive;
+  --font-body: var(--font-poppins), system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgba(46, 77, 58, 0.04),
+    0 12px 40px -12px rgba(46, 77, 58, 0.16);
+  --shadow-lift: 0 2px 6px rgba(46, 77, 58, 0.08),
+    0 24px 60px -18px rgba(46, 77, 58, 0.28);
+
+  --ease-elegant: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  background-color: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(201, 162, 39, 0.22);
+  color: var(--color-primary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-primary);
+  letter-spacing: 0.005em;
+}
+
+/* Custom scrollbar --------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: #d8cfbe;
+  border-radius: 999px;
+  border: 3px solid var(--color-background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+}
+
+@utility verse {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Fine top-to-bottom hairline used to separate sacred sections */
+.rule {
+  width: 1px;
+  height: 72px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.input::placeholder {
+  color: #a9a196;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+.gold-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-gold);
+}
+
+/* Editorial eyebrow / kicker labels */
+.kicker {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--color-gold);
+}
+
+/* Grain overlay for the sacred, filmic feel */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  z-index: 20;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------------ */
+/*  Accessibility: honour reduced motion                               */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
